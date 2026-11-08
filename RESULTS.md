@@ -19,6 +19,9 @@
 
 ## Part A
 - Step A4, status codes when the other user reads, changes and deletes:
+  - read (GET): 404, body {"error":"not found"}
+  - change (PUT): 400, body {"error":"rating ID 12714 not found"}
+  - delete (DELETE): 400, body {"error":"rating ID 12715 not found"}
 
 ## Part B
 1.
