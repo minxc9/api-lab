@@ -1,5 +1,20 @@
 # api-lab
 
+## Install and run
+
+```bash
+python3 -m venv .venv
+source .venv/bin/activate          # Windows PowerShell
+pip install -r requirements.txt
+pytest -v
+```
+
+To save the output of a full run as an HTML report:
+
+```bash
+pytest -v --html=report.html --self-contained-html
+```
+
 | Characteristic | Blocks | Values in the tests |
 |---|---|---|
 | C1 Value of stars | below 1, 1 to 5 (base), above 5 | 0, 3, 6 |
