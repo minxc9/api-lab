@@ -24,11 +24,18 @@
   - delete (DELETE): 400, body {"error":"rating ID 12715 not found"}
 
 ## Part B
-1.
-2.
-3.
-4.
-5.
-6.
-7.
-8.
+1. A real-server test can find problems between parts (e.g. the load balancer and login) and real server errors (e.g. the 500 in Step 0.16). Unit tests with stubs are still useful because they are fast and show exactly which function broke.
+
+2. Public-token ratings are shared. A new user keeps each test's data separate. In Project 2, we can use this so each test will create and delete its own data.
+
+3. Each server keeps its own users, and the session's AWSALB cookie keeps all requests on the same server. My three runs of Step 0.12: failed, failed, then passed. The test is flaky.
+
+4. The block "all 3 tools excluded". A 500 with no body gives the app no message, while a 400 explains the problem. The xfail keeps the defect visible until it's fixed.
+
+5. Base choice: 1 + 2 + 3 + 1 + 2 = 9 tests. All combinations: 3 x 4 x 2 x 3 = 72 tests.
+
+6. 404 (read), 400 (change), 400 (delete). I expect the same code for all, like 404 or 403. It is a minor defect because the codes are inconsistent, but the rating stayed safe.
+
+7. It returns 200 with the default user's ratings. Any 16-character token is accepted. This is a defect: a stranger could see or change other people's data without logging in.
+
+8. An API test checks status codes and error messages better and runs faster. Only a web page test can check what the user sees on screen.
